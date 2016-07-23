@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufs.uri;
+package br.ufs.uri.u1710;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class uri1710 {
+public class Main {
     public static void main() {
         Scanner s = new Scanner(System.in);
         
         int m = s.nextInt();
         int n = s.nextInt();
-        
-        int max = 0;
         
         ArrayList<Plano> planos = new ArrayList<Plano>();
         
