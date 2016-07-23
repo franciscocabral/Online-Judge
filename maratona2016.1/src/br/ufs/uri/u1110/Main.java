@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufs.uri;
+package br.ufs.uri.u1110;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Main {
+public class Main {
 
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufs.uri;
+package br.ufs.uri.u1708;
 
 import java.util.Scanner;
 
-class main {
+public class Main {
 
     public static void main() {
         Scanner s = new Scanner(System.in);
