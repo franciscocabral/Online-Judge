@@ -7,11 +7,9 @@ package br.ufs.uri.u1023;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +24,7 @@ public class Main {
         while (n > 0) {
             cidade++;
             HashMap<Integer,Integer> consumo = new HashMap<Integer,Integer>();
-            int consumoTotal = 0, 
+            double consumoTotal = 0, 
                 populacao = 0;
             for(int i = 0; i < n; i++){
                 int p = s.nextInt();
@@ -41,22 +39,15 @@ public class Main {
                 }
                 consumo.put(con, tmp + p);
             }
-            float c = consumoTotal/populacao;
+            double c = Math.floor((consumoTotal/populacao) * 100)/100;
             
-            //DANDO TLE, melhora se fizer em tempo de inserção
             List<Integer> keys = new LinkedList<Integer>(consumo.keySet());
             Collections.sort(keys);
 
-            Map<Integer, Integer> sortedMap = new LinkedHashMap<Integer, Integer>();
-            for(Integer key: keys){
-                sortedMap.put(key, consumo.get(key));
-            }
-
             sb.append("Cidade# ").append(cidade).append(":\n");
             boolean first = true;
-            for (Map.Entry<Integer, Integer> entry : sortedMap.entrySet()) {
-                Integer con = entry.getKey();
-                Integer pop = entry.getValue();
+            for (Integer con : keys) {
+                Integer pop = consumo.get(con);
                 if(first){
                    first = false; 
                 }else{
