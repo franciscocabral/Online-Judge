@@ -19,19 +19,18 @@ public class Main {
     public static Stack<Integer> pilha3 = new Stack<Integer>();
 
     public static int resolucao() {
-        //Caso base
         if (pilha1.empty() && pilha2.empty() && pilha3.empty()) {
-            return 0;
+            return 1;
         }
         if ((pilha1.empty() && pilha2.empty())
                 || (pilha1.empty() && pilha3.empty())
                 || (pilha2.empty() && pilha3.empty())) {
-            return 1;
+            return 0;
         }
 
         if (pilha1.empty()) {
             if ((pilha2.peek() + pilha3.peek()) % 3 > 0) {
-                return 1;
+                return 0;
             } else {
                 pilha2.pop();
                 pilha3.pop();
@@ -39,7 +38,7 @@ public class Main {
             }
         } else if (pilha2.empty()) {
             if ((pilha1.peek() + pilha3.peek()) % 3 > 0) {
-                return 1;
+                return 0;
             } else {
                 pilha1.pop();
                 pilha3.pop();
@@ -47,47 +46,51 @@ public class Main {
             }
         } else if (pilha3.empty()) {
             if ((pilha2.peek() + pilha1.peek()) % 3 > 0) {
-                return 1;
+                return 0;
             } else {
                 pilha2.pop();
                 pilha1.pop();
                 return resolucao();
             }
         } else {
-            if ((pilha1.peek() + pilha2.peek() + pilha3.peek()) % 3 == 0) {
+            int num1 = pilha1.peek();
+            int num2 = pilha2.peek();
+            int num3 = pilha3.peek();
+            
+            if ((num1 + num2 + num3) % 3 == 0) {
                 pilha1.pop();
                 pilha2.pop();
                 pilha3.pop();
                 return resolucao();
             }
 
-            int num1 = pilha1.peek();
-            int num2 = pilha2.peek();
-            int num3 = pilha3.peek();
-
-            boolean pode12 = false, pode13 = false, pode23 = false;
+            boolean pode12 = false, 
+                    pode13 = false, 
+                    pode23 = false;
 
             if ((num1 + num2) % 3 == 0) {
                 pilha1.pop();
                 pilha2.pop();
-                pode12 = resolucao() == 0;
+                pode12 = resolucao() == 1;
                 pilha1.push(num1);
                 pilha2.push(num2);
-            } else if ((num2 + num3) % 3 == 0) {
+            } 
+            if ((num2 + num3) % 3 == 0) {
                 pilha2.pop();
                 pilha3.pop();
-                pode23 = resolucao() == 0;
+                pode23 = resolucao() == 1;
                 pilha2.push(num2);
                 pilha3.push(num3);
-            } else if ((num1 + num3) % 3 == 0) {
+            } 
+            if ((num1 + num3) % 3 == 0) {
                 pilha1.pop();
                 pilha3.pop();
-                pode13 = resolucao() == 0;
+                pode13 = resolucao() == 1;
                 pilha1.push(num1);
                 pilha3.push(num3);
             }
 
-            return (pode12 || pode13 || pode23) ? 0 : 1;
+            return (pode12 || pode13 || pode23) ? 1 : 0;
         }
 
     }
@@ -120,7 +123,7 @@ public class Main {
                     pilha3.push(num);
                 }
             }
-            if (somatorio % 3 == 0) {
+            if (somatorio % 3 > 0) {
                 sb.append(0).append("\n");
             } else {
                 sb.append(resolucao()).append("\n");
