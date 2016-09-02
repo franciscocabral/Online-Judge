@@ -18,6 +18,7 @@ public class Main {
         int r = s.nextInt();
         int z = 0;
         while (r != -1) {
+            pessoas.clear();
             pessoas.add(s.next());
             pessoas.add(s.next());
             pessoas.add(s.next());
@@ -40,12 +41,12 @@ public class Main {
                 amigos[p2][p1] = true;
             }
             z++;
-            System.out.println("Instancia "+z);
+            System.out.println("Instancia " + z);
             for (int i = 0; i < 4; i++) {
                 for (int j = i + 1; j < 5; j++) {
                     for (int k = j + 1; k < 6; k++) {
                         if (amigos[i][j] && amigos[j][k] && amigos[k][i]) {
-                            System.out.println(pessoas.get(i) + " " + pessoas.get(j) + " " + pessoas.get(k) + " sao inimigos");
+                            System.out.println(pessoas.get(i) + " " + pessoas.get(j) + " " + pessoas.get(k) + " sao amigos");
                         }
                         if (!amigos[i][j] && !amigos[j][k] && !amigos[k][i]) {
                             System.out.println(pessoas.get(i) + " " + pessoas.get(j) + " " + pessoas.get(k) + " sao inimigos");
@@ -54,6 +55,7 @@ public class Main {
                 }
             }
             r = s.nextInt();
+            if(r!=-1)System.out.println("");
         }
     }
 }
