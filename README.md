@@ -1,2 +1,4 @@
-# Maratona-2016.1
-Códigos para preparação da maratona
+# Online-Judge
+Soluções para questões de Juizes Onlines, como:
+* URI
+* UVA
