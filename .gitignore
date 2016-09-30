@@ -3,3 +3,6 @@
 a
 /dist/
 /bin/
+build.xml
+manifest.mf
+nbproject/
