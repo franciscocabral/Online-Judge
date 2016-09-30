@@ -6,32 +6,33 @@
 package u10689;
 
 import java.util.Scanner;
+//g(n) = a*fib(n-2) + b*fib(n-1)
+//Pisano period = 60/300/1500/15000
 
 public class Main {
-    public static long solve(int a, int b, int n) {
-        long seq0 = a;
-        long seq1 = b;
-        long seqi = (seq0 + seq1) ;
-        long tmp;
-        for (long i = 1; i <= n; i++){
-            tmp = (seq0 + seq1) % 10000;
-            seq0 = seq1;
-            seq1 = seqi;
-            seqi = tmp;
-        }
-        return seqi;
+    public static int[] fib = new int[15005];
+    public static int[] pisano = {0,60,300,1500,15000};
+    
+    public static long solve(int a, int b, int n, int m) {
+        int num = n % pisano[m];
+        long result = (a*fib[num-2]+b*fib[num-1]);
+        return (int) (result % Math.pow(10,m));
     }
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
+        fib[0] = 0;
+        fib[1] = 1;
+        for(int i = 2; i < 15005; i++)
+            fib[i] = fib[i-2] + fib[i-1];
+        
         int t = s.nextInt();
-
         for (int i = 0; i < t; i++) {
             int a = s.nextInt();
             int b = s.nextInt();
             int n = s.nextInt();
             int m = s.nextInt();
-            System.out.println((int)(solve(a,b,n) % Math.pow(10, m)));
+            System.out.println(solve(a,b,n, m));
 
         }
     }
