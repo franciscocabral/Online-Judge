@@ -1,23 +1,26 @@
-package u543;
+package u10394;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     
-    static int MAX = 1000001;
+    static int MAX = 20000001;
     static ArrayList<Integer> prime = new ArrayList<Integer>();
+    static ArrayList<Integer> primeTwin = new ArrayList<Integer>();
     static boolean[] isPrime = new boolean[MAX];
     
     public static void precalc(){
-        for(int i = 0; i <= 1000000; i++) isPrime[i] = true;
+        for(int i = 0; i < MAX; i++) isPrime[i] = true;
         isPrime[0] = false;
         isPrime[1] = false;    
-        for(int i = 2; i <= 1000000; i++){
+        for(int i = 2; i < MAX; i++){
             if(isPrime[i]){
+                if(isPrime[i-2])
+                    primeTwin.add(i-2);
                 prime.add(i);
                 int j = 2;
-                while(j*i <= 1000000){
+                while(j*i < MAX){
                     isPrime[j*i] = false;
                     j++;
                 }
@@ -29,16 +32,11 @@ public class Main {
         Scanner s = new Scanner(System.in);
         StringBuilder sb = new StringBuilder();
         precalc();
-        int n = s.nextInt();
-        while(n != 0){
-            for(int i = 0; i <= Math.sqrt(n)+1; i++){
-                int primeI = prime.get(i);
-                if(isPrime[n-primeI]){
-                    sb.append(n).append(" = ").append(primeI).append(" + ").append(n-primeI).append("\n");
-                    break;
-                }
-            }
-            n = s.nextInt();
+        while(s.hasNext()){
+            int n = s.nextInt();
+            if(n == 0) break;
+            int primeI = primeTwin.get(n-1);
+            sb.append("(").append(primeI).append(", ").append(primeI+2).append(")\n");
         }
         System.out.print(sb.toString());
     }
