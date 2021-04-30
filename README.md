@@ -1,4 +1,3 @@
-# Online-Judge
-Soluções para questões de Juizes Onlines, como:
-* URI
-* UVA
+# URI
+Repositório de soluções do URI Online Judge
+www.urionlinejudge.com.br
